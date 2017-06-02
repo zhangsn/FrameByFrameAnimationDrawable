@@ -17,6 +17,7 @@ import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.SystemClock;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.IntRange;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -54,7 +55,7 @@ public class FrameByFrameAnimationDrawable extends Drawable implements Animatabl
      * @param extreamlyMemoryLimit Use more CPU and IO time to save even more memory
      * @return A new FrameByFrameAnimationDrawable
      */
-    public static FrameByFrameAnimationDrawable loadAnimation(Context context,@XmlRes int resId,boolean extreamlyMemoryLimit){
+    public static FrameByFrameAnimationDrawable loadAnimation(Context context, int resId, boolean extreamlyMemoryLimit){
         final List<MyFrame> myFrames = new LinkedList<>();
         boolean oneshot = true;
         XmlResourceParser parser = context.getResources().getXml(resId);
