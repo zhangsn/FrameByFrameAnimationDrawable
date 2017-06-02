@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="android.magictools.cn.framebyframeanimationdrawable.MainActivity">
+    <TextView
+        android:text="Toggle to switch between AnimationDrawable and FrameByFrameAnimationDrawable
+\nUse memory monitor to see the different memory cost(GC first)"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <RadioGroup
+        android:id="@+id/radio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RadioButton
+            android:checked="true"
+            android:id="@+id/one"
+            android:text="AnimationDrawable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <RadioButton
+            android:id="@+id/two"
+            android:text="FrameByFrameAnimationDrawable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <RadioButton
+            android:id="@+id/three"
+            android:text="FrameByFrameAnimationDrawable(Memory limit)"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </RadioGroup>
+
+    <ImageView
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/imageview"
+        android:layout_width="110dp"
+        android:layout_height="125dp"/>
+</LinearLayout>

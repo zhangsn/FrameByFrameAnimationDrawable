@@ -1,3 +1,9 @@
+package android.magictools.cn.frameanimationdrawable;
+
+/**
+ * Created by zhangsn on 17/6/2.
+ */
+
 import android.content.Context;
 import android.content.res.XmlResourceParser;
 import android.graphics.Bitmap;
@@ -40,7 +46,15 @@ public class FrameByFrameAnimationDrawable extends Drawable implements Animatabl
     Context context;
     AsyncTask task;
     private boolean isRunning;
-    public static FrameByFrameAnimationDrawable loadAnimation(Context context,@XmlRes int resId){
+
+    /**
+     * Load a FrameByFrameAnimationDrawable from resource
+     * @param context Context
+     * @param resId Resource Id of an animation-list
+     * @param extreamlyMemoryLimit Use more CPU and IO time to save even more memory
+     * @return A new FrameByFrameAnimationDrawable
+     */
+    public static FrameByFrameAnimationDrawable loadAnimation(Context context,@XmlRes int resId,boolean extreamlyMemoryLimit){
         final List<MyFrame> myFrames = new LinkedList<>();
         boolean oneshot = true;
         XmlResourceParser parser = context.getResources().getXml(resId);
@@ -53,7 +67,9 @@ public class FrameByFrameAnimationDrawable extends Drawable implements Animatabl
                         for (int i=0; i<parser.getAttributeCount(); i++) {
                             if (parser.getAttributeName(i).equals("drawable")) {
                                 myFrame.resId = Integer.parseInt(parser.getAttributeValue(i).substring(1));
-                                myFrame.frameBytes = toByteArray(context,myFrame.resId);
+                                if(!extreamlyMemoryLimit) {
+                                    myFrame.frameBytes = toByteArray(context, myFrame.resId);
+                                }
                             }
                             else if (parser.getAttributeName(i).equals("duration")) {
                                 myFrame.duration = parser.getAttributeIntValue(i, 1000);
@@ -80,7 +96,7 @@ public class FrameByFrameAnimationDrawable extends Drawable implements Animatabl
         this.paint = new Paint();
         this.context = context;
         this.oneshot = oneshot;
-        currentBitmap = loadBitmap(frameList.get(0).frameBytes);
+        currentBitmap = loadBitmap(frameList.get(0));
         nextBitmap = currentBitmap;
         this.frameList.get(0).isReady = true;
     }
@@ -104,7 +120,7 @@ public class FrameByFrameAnimationDrawable extends Drawable implements Animatabl
         stop();
         isRunning = true;
         pos = 1;
-        currentBitmap = loadBitmap(frameList.get(0).frameBytes);
+        currentBitmap = loadBitmap(frameList.get(0));
         nextBitmap = currentBitmap;
         this.frameList.get(0).isReady = true;
         invalidateSelf();
@@ -175,7 +191,7 @@ public class FrameByFrameAnimationDrawable extends Drawable implements Animatabl
             @Override
             protected Bitmap doInBackground(Void... params) {
                 if(!isCancelled()){
-                    return loadBitmap(frameList.get(pos).frameBytes);
+                    return loadBitmap(frameList.get(pos));
                 }
                 return null;
             }
@@ -221,12 +237,16 @@ public class FrameByFrameAnimationDrawable extends Drawable implements Animatabl
             }
         }
     }
-    private static Bitmap loadBitmap(byte[] bytes){
+    private Bitmap loadBitmap(MyFrame frame){
         Bitmap returnBitmap = null;
         BitmapFactory.Options opt = new BitmapFactory.Options();
         opt.inPreferredConfig = Bitmap.Config.ARGB_8888;
         opt.inJustDecodeBounds = false;
-        return BitmapFactory.decodeByteArray(bytes, 0,bytes.length, opt);
+        if(frame.frameBytes != null) {
+            return BitmapFactory.decodeByteArray(frame.frameBytes, 0, frame.frameBytes.length, opt);
+        }else{
+            return BitmapFactory.decodeStream(context.getResources().openRawResource(frame.resId));
+        }
 
     }
     @Override
