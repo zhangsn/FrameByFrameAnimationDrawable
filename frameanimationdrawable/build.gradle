@@ -27,7 +27,7 @@ publish {
     repoName = 'FrameByFrameAnimationDrawable'
     groupId = 'cn.magictools'//jcenter上的路径
     artifactId = 'FrameByFrameAnimationDrawable'//项目名称
-    publishVersion = '1.0.0'//版本号
+    publishVersion = '1.0.1'//版本号
     desc = 'A frame by frame AnimationDrawable which can replace system AnimationDrawable in order to save memory'//描述
     website = 'https://github.com/zhangsn/FrameByFrameAnimationDrawable'//网站,尽量采用同样的格式
     bintrayUser = 'zhangsn'
