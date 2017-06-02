@@ -15,7 +15,7 @@ Customized AnimationDrawable which will not load all anim-list frames into memor
 4. Don't forget to call start() to start the animation.
 
 ## About extreamlyMemoryLimit parameter
-By default,FrameByFrameAnimationDrawable will cache every frame(only the raw bytes,not bitmap) of the animation-list in memory in order to be I/O efficient when decode raw bytes into bitmap. However if your app has extreamly memory limit, you can set this parameter to true and the cache will not be used.
+By default,FrameByFrameAnimationDrawable will cache every frame(only the raw bytes,not bitmap) of the animation-list in memory in order to be I/O efficient when decoding raw bytes into bitmap. However if your app has extreamly memory limit, you can set this parameter to true and the cache will not be used.
 
 ## Limitation
 Cause we don't us Android build in resource loading mechanism, the bitmaps will not be automatically scaled according to difference dpi.You **have to** specify the layout_width and layout_height in real dimentions.
