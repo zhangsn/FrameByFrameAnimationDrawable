@@ -2,7 +2,7 @@ FrameByFrameAnimationDrawable
 ===================
 
 
-Customized animationdrawable which will not load all anim-list frames into memory at once in order to prevent OutOfMemory error
+Customized AnimationDrawable which will not load all anim-list frames into memory at once in order to prevent OutOfMemory error
 ## How it works
 1. Frame bitmaps will not be loaded using android build in resource loading mechanism which will scale bitmap according to device dpi. The bitmaps are only "scaled" when drawing
 2. Only two bitmaps will be in memory at the same time. 
