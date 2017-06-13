@@ -10,6 +10,10 @@ Customized AnimationDrawable which will not load all anim-list frames into memor
 
 ## Usage
 1. Write your anim-list xml as usual
+2. add dependency  
+```` 
+compile'cn.magictools:FrameByFrameAnimationDrawable:1.0.1'
+````
 2. Use FrameByFrameAnimationDrawable.loadAnimation(Context context, int resId, boolean extreamlyMemoryLimit) to create a FrameByFrameAnimationDrawable instance.
 3. Use the instance as normal AnimationDrawable.
 4. Don't forget to call start() to start the animation.
