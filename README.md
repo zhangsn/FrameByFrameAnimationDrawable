@@ -14,9 +14,9 @@ Customized AnimationDrawable which will not load all anim-list frames into memor
 ```` 
 compile 'cn.magictools:FrameByFrameAnimationDrawable:1.0.1'
 ````
-2. Use FrameByFrameAnimationDrawable.loadAnimation(Context context, int resId, boolean extreamlyMemoryLimit) to create a FrameByFrameAnimationDrawable instance.
-3. Use the instance as normal AnimationDrawable.
-4. Don't forget to call start() to start the animation.
+3. Use FrameByFrameAnimationDrawable.loadAnimation(Context context, int resId, boolean extreamlyMemoryLimit) to create a FrameByFrameAnimationDrawable instance.
+4. Use the instance as normal AnimationDrawable.
+5. Don't forget to call start() to start the animation.
 
 ## About extreamlyMemoryLimit parameter
 By default,FrameByFrameAnimationDrawable will cache every frame(only the raw bytes,not bitmap) of the animation-list in memory in order to be I/O efficient when decoding raw bytes into bitmap. However if your app has extreamly memory limit, you can set this parameter to true and the cache will not be used.
